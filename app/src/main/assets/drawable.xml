@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <version>1</version>
+
+
+
+    <category title="All Icons" />
+    <item drawable="ic_0002" />
+    <item drawable="ic_0003" />
+    <item drawable="ic_0005" />
+    <item drawable="ic_0006" />
+    <item drawable="ic_0012" />
+    <item drawable="ic_0013" />
+    <item drawable="ic_0014" />
+    <item drawable="ic_0015" />
+    <item drawable="ic_0016" />
+    <item drawable="ic_0017" />
+    <item drawable="ic_0018" />
+    <item drawable="ic_0019" />
+    <item drawable="ic_0020" />
+    <item drawable="ic_0021" />
+    <item drawable="ic_0022" />
+    <item drawable="ic_0023" />
+    <item drawable="ic_0025" />
+    <item drawable="ic_0038" />
+    <item drawable="ic_0040" />
+    <item drawable="ic_0041" />
+    <item drawable="ic_0042" />
+    <item drawable="ic_0046" />
+    <item drawable="ic_0047" />
+    <item drawable="ic_0052" />
+    <item drawable="ic_0066" />
+    <item drawable="ic_0067" />
+    <item drawable="ic_0068" />
+    <item drawable="ic_0069" />
+
+
+</resources>

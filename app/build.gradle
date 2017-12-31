@@ -1,0 +1,99 @@
+apply from: '../dependencies.gradle'
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:' + versions.aptPlugin
+    }
+}
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            output.outputFile = new File(
+                    output.outputFile.parent, "${variant.applicationId}-${variant.versionName}.apk")
+        }
+    }
+
+    // Note to Aidan sample uses same keystore as Cabinet
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.yoonun.newyear2018"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.publishVersionCode
+        versionName versions.publishVersion
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    buildTypes {
+//        debug {
+//            signingConfig signingConfigs.production
+//        }
+        release {
+//            signingConfig signingConfigs.production
+            // Disable Proguard so our drawable-nodpi resources aren't removed
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        // Required by Kustom support to avoid assets being compressed
+        aaptOptions {
+            noCompress 'zip', 'komp', 'klwp', 'kwgt', 'klck', 'kwch'
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+    maven { url "https://dl.bintray.com/drummer-aidan/maven" }
+}
+
+dependencies {
+    compile project(path: ':licensing')
+
+    compile 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
+    compile 'com.afollestad:drag-select-recyclerview:' + versions.dragSelectRv
+    compile('com.afollestad:bridge:' + versions.bridge) {
+        exclude group: 'org.json', module: 'json'
+    }
+    compile 'com.afollestad:sectioned-recyclerview:' + versions.sectionedRv
+    compile 'com.afollestad:assent:' + versions.assent
+    compile 'com.afollestad:icon-request:' + versions.iconRequest
+    compile 'com.afollestad:inquiry:' + versions.inquiry
+
+    compile 'me.zhanghai.android.materialprogressbar:library:' + versions.mdProgressBar
+
+    compile 'com.android.support:appcompat-v7:' + versions.supportLib
+    compile 'com.android.support:recyclerview-v7:' + versions.supportLib
+    compile 'com.android.support:support-v13:' + versions.supportLib
+    compile 'com.android.support:design:' + versions.supportLib
+    compile 'com.android.support:cardview-v7:' + versions.supportLib
+    compile 'com.android.support:palette-v7:' + versions.supportLib
+
+    compile 'com.github.bumptech.glide:glide:' + versions.glide
+    compile "com.github.florent37:glidepalette:$versions.glidePalette@aar"
+
+    compile 'com.jakewharton:butterknife:' + versions.butterKnife
+    apt 'com.jakewharton:butterknife-compiler:' + versions.butterKnife
+
+    compile 'com.google.android.apps.muzei:muzei-api:' + versions.muzei
+    compile 'com.makeramen:roundedimageview:' + versions.roundImageView
+
+    compile 'com.anjlab.android.iab.v3:library:' + versions.iab
+    compile 'com.pluscubed:insets-dispatcher:' + versions.insetDispatcher
+
+    compile 'org.bitbucket.frankmonza:kustomapi:+'
+}

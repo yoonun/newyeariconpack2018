@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <bool name="changelog_enabled">true</bool>
+
+    <string-array name="changelog" translatable="false">
+        <item><![CDATA[ <b> </b> ]]></item>
+        <item><![CDATA[  <i> </i>.. ]]></item>
+    </string-array>
+
+</resources>
